@@ -10,14 +10,9 @@ jobs:
     needs: greeting
     runs-on: ubuntu-latest
     container: rootproject/root:${{ matrix.version }}
-    continue-on-error: ${{ matrix.allow_failure }}
     strategy:
       matrix:
-        version: ["6.26.10-conda"]
-        allow_failure: [false]
-        include:
-          - version: "latest"
-            allow_failure: true
+        version: ["6.26.10-conda", "latest"]
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -25,3 +20,14 @@ jobs:
           COMPILER=$(root-config --cxx)
           FLAGS=$(root-config --cflags --libs)
           $COMPILER -g -O3 -Wall -Wextra -Wpedantic -o skim skim.cxx $FLAGS
+  skim:
+    needs: build_skim
+    runs-on: ubuntu-latest
+    container: rootproject/root:6.26.10-conda
+     steps:
+       - name: Check out repo
+         uses: actions/checkout@v4
+
+       - name: skim
+         run: ./skim
+
