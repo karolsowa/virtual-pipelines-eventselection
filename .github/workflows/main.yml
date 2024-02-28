@@ -39,11 +39,13 @@ jobs:
       - name: skim
         run: |
           chmod +x ./skim
-          ./skim root://eosuser.cern.ch//eos/user/g/gstark/AwesomeWorkshopFeb2020/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
+          ./skim root://eosuser.cern.ch//eos/user/g/gstark/AwesomeWorkshopFeb2020/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1 > skim_ggH.log
       - uses: actions/upload-artifact@v4
         with: 
           name: skim_ggH
-          path: skim_ggH.root
+          path: |
+            skim_ggH.root
+            skim_ggH.log
 
   plot:
     needs: skim
