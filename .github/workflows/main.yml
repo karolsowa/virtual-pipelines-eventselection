@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-        run: |
+      - run: |
           COMPILER=$(root-config --cxx)
           $COMPILER -g -O3 -Wall -Wextra -Wpedantic -o skim skim.cxx
 
