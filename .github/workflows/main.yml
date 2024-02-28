@@ -7,7 +7,7 @@ jobs:
       - name: Print hello  
         run: echo hello world
   build_skim:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Compile skim
         run: |
