@@ -24,10 +24,10 @@ jobs:
     needs: build_skim
     runs-on: ubuntu-latest
     container: rootproject/root:6.26.10-conda
-     steps:
-       - name: Check out repo
-         uses: actions/checkout@v4
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-       - name: skim
-         run: ./skim
+      - name: skim
+        run: ./skim
 
