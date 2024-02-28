@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container: rootproject/root:6.26.10-conda
     steps:
-      - name: Compile skim
+      - name: Check out repo
+        uses: actions/checkout@v4
         run: |
           COMPILER=$(root-config --cxx)
           $COMPILER -g -O3 -Wall -Wextra -Wpedantic -o skim skim.cxx
